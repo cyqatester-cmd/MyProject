@@ -1,0 +1,9 @@
+{
+    "name": "New Product Test 2",
+    "data": {
+        "year": 2026,
+        "price": 2500,
+        "CPU model": "Turbo",
+        "Hard disk size": "2 TB"
+    }
+}
