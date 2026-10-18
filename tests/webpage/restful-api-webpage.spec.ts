@@ -6,7 +6,7 @@ test('Go to Restful-api.dev site', async ({ page }) => {
     const pageTitle = page.getByRole('link', { 
       name: 'RESTful API' 
     })      
-    await expect(pageTitle).not.toBeVisible();
+    await expect(pageTitle).toBeVisible();
 });
 
 test('Go to View Endpoints', async ({ page }) => {
