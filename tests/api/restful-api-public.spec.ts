@@ -39,6 +39,7 @@ test('GET - Should get a Single Object By Id', async ({ request }) => {
 });
 
 test('POST & DELETE - Insert new Product and then delete', async ({ request }) => {
+    // Make HTTP POST request
     const postResponse = await apiUtils.postNewObject(postPayload);
     const postResponseBody = await postResponse.json();
 
@@ -50,9 +51,6 @@ test('POST & DELETE - Insert new Product and then delete', async ({ request }) =
 
     // Make HTTP GET request to verify inserted data
     const getByIdResponse = await apiUtils.getObjectByID(productId);
-    const getByIdResponseBody = await getByIdResponse.json();
-
-    // expect(getByIdResponseBody.name).toBe('New Product Test');
     await assertProductName(getByIdResponse, postPayload);
 
     // Make HTTP DELETE request
