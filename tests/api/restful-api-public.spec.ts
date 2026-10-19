@@ -12,7 +12,7 @@ test.beforeEach(async ({ request }) => {
     apiUtils = new ApiHelpers(request);
 });
 
-test('GET - Should get all Objects', { tag: '@rest-api' } , async ({ request }) => {
+test('Should get all Objects', { tag: '@get' } , async ({ request }) => {
     // Make HTTP request
     const response = await apiUtils.getAllObjects();
 
@@ -22,7 +22,7 @@ test('GET - Should get all Objects', { tag: '@rest-api' } , async ({ request }) 
     await apiAssert.assertGetAllResponseBody(response, testDataOne);
 });
 
-test('GET - Should get a Single Object By Id', async ({ request }) => {
+test('Should get a Single Object By Id', { tag: '@get' } , async ({ request }) => {
     // Make HTTP request
     const response = await apiUtils.getObjectByID('1');
 
@@ -31,7 +31,7 @@ test('GET - Should get a Single Object By Id', async ({ request }) => {
     await apiAssert.assertGetByIdResponseBody(response, testDataOne);
 });
 
-test('POST & DELETE - Insert new Product and then delete', async ({ request }) => {
+test('Insert new Product and then delete', { tag: ['@post', '@delete'] }, async ({ request }) => {
     // Make HTTP POST request
     const postResponse = await apiUtils.postNewObject(postPayload);
     const postResponseBody = await postResponse.json();
@@ -51,7 +51,7 @@ test('POST & DELETE - Insert new Product and then delete', async ({ request }) =
     await apiAssert.assertDeleteProduct(deleteResponse, productId);
 });
 
-test('POST, PUT, & DELETE - Insert new Product and then delete', async ({ request }) => {
+test('Insert new Product, Update an existing product, and then delete', { tag: ['@post', '@put', '@delete'] }, async ({ request }) => {
     // Make HTTP POST request
     const postResponse = await apiUtils.postNewObject(postPayload);
     const postResponseBody = await postResponse.json();

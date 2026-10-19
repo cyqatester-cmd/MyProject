@@ -19,7 +19,6 @@ export async function assertGetAllObjectResponseBody(response: APIResponse) {
     const responseBody = await response.json();
     
     // console.log(responseBody);
-
     expect(Array.isArray(responseBody)).toBe(true);
     expect(responseBody.length).toBeGreaterThan(0);
 }
@@ -32,7 +31,7 @@ export async function assertGetAllResponseBody(response: APIResponse, jsonInputD
     //find product by id = 1 from the response
     const product = responseBody.find((item: any) => item.id === jsonInputData.id);
 
-    console.log('jsonInputData ID: ' + jsonInputData.id)
+    // console.log('jsonInputData ID: ' + jsonInputData.id)
 
     expect(product.id).toBe(jsonInputData.id);
     expect(product.name).toBe(jsonInputData.name);
@@ -74,6 +73,7 @@ export async function assertDeleteProduct(response: APIResponse, productId: Stri
 
 export async function assertPutResponse(id: String, response: APIResponse, jsonInputData: any) {
     
+    // Parse JSON response
     const putResponseBody = await response.json();
 
     expect(putResponseBody.id).toBe(id);
