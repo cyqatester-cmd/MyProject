@@ -9,9 +9,11 @@ export async function assertRestFundamentalsLink(page: Page) {
     await restFundamentals.click();
 }
 
-export async function assertRestFundamentalsHeader(page: Page) {
-    const restFundamentalsHeader = page.getByRole('heading', { 
-        name: 'Rest Fundamentals' 
+export async function assertHeader(page: Page, headerName: string) {
+    const header = page.getByRole('heading', { 
+        name: headerName,
+        level: 1,
+        exact: true 
     });
-    await expect(restFundamentalsHeader).toBeVisible();
+    await expect(header).toBeVisible();
 }
