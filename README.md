@@ -1,24 +1,23 @@
 # Playwright Framework — GitHub Actions
 
-A web UI test automation framework built with **TypeScript, Playwright, Google Chrome, and the Page Object Model (POM)**. This project includes a GitHub Actions workflow (`playwright.yml`) to automate test execution and support continuous integration (CI).
+A web UI test automation framework built with **TypeScript, Playwright, Google Chrome, and the Page Object Model (POM)**. Supports desktop and mobile testing, integrated with GitHub Actions for continuous integration (CI).
 
 ## Tech Stack
 
-* **TypeScript** — Programming language
-* **Playwright** — Browser automation and end-to-end testing
-* **Page Object Model (POM)** — Maintainable and reusable test architecture
-* **Google Chrome** — Browser for local test execution
-* **GitHub Actions** — Continuous integration and automated test execution
+* **TypeScript** — Test scripting
+* **Playwright** — End-to-end UI automation
+* **Page Object Model (POM)** — Reusable test architecture
+* **Google Chrome** — Desktop browser testing
+* **Mobile Emulation** — Responsive UI testing
+* **GitHub Actions** — Automated CI test execution
 
 ## Prerequisites
 
-Before working with this project, ensure you have the following installed:
-
 * [Node.js](https://nodejs.org/)
 * [Git](https://git-scm.com/)
-* **IDE or code editor** — [Visual Studio Code](https://code.visualstudio.com/) is recommended
-* Playwright dependencies and browsers, installed through the project setup
+* [Visual Studio Code](https://code.visualstudio.com/) or another IDE
+* **Playwright dependencies and browsers** — Required packages, browser binaries, and system dependencies for test execution.
 
 ## CI/CD with GitHub Actions
 
-This project includes a GitHub Actions workflow (`playwright.yml`) to run automated tests in CI. Tests can be triggered by events such as pushes and pull requests, depending on the workflow configuration.
+The `playwright.yml` workflow automates test execution on configured events, such as pushes and pull requests. It can run desktop and mobile tests and publish test reports as CI artifacts.

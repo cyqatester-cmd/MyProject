@@ -1,19 +1,25 @@
-import { expect, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 
-export async function assertRestFundamentalsLink(page: Page) {
-    const restFundamentals = page.getByRole('link', { 
-        name: 'Rest Fundamentals' 
-    });
-    
-    await expect(restFundamentals).toBeVisible();
-    await restFundamentals.click();
-}
+export class RestFundamentalsPage {
+  readonly page: Page;
+  readonly restFundamentalsLink: Locator;
+  readonly mainHeading: Locator;
 
-export async function assertHeader(page: Page, headerName: string) {
-    const header = page.getByRole('heading', { 
-        name: headerName,
-        level: 1,
-        exact: true 
-    });
-    await expect(header).toBeVisible();
+  constructor(page: Page) {
+    this.page = page;
+    this.restFundamentalsLink = page.getByRole("link", { name: "Rest Fundamentals" });
+    this.mainHeading = page.locator("h1");
+  }
+
+  async goto(path = "rest-fundamentals") {
+    await this.page.goto(path);
+  }
+
+  async openFromHome() {
+    await this.restFundamentalsLink.click();
+  }
+
+  async expectHeading(name: string) {
+    await expect(this.mainHeading).toHaveText(name, { ignoreCase: true });
+  }
 }

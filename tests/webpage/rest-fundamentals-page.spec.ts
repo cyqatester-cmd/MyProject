@@ -1,43 +1,61 @@
-import { test, expect } from "@playwright/test";
-import * as restFundamentalsPage from "../../src/pages/RestFundamentalsPage";
+import { test } from "@playwright/test";
+import { RestFundamentalsPage } from "../../src/pages/RestFundamentalsPage";
+import { MainPage } from "../../src/pages/MainPage";
 
-test('Go to Rest Fundamentals Page', async ({ page }) => {
-    await page.goto('');
-    await restFundamentalsPage.assertRestFundamentalsLink(page);
-    await restFundamentalsPage.assertHeader(page, 'Rest Fundamentals');
+test("Go to Rest Fundamentals Page", { tag: '@desktop' } , async ({ page }) => {
+  const restPage = new RestFundamentalsPage(page);
+  await restPage.page.goto("/");
+  await restPage.openFromHome();
+  await restPage.expectHeading("Rest Fundamentals");
 });
 
-test('Go to REST API Fundamentals', async ({ page }) => {
-    await page.goto('rest-fundamentals');
-    await restFundamentalsPage.assertHeader(page, 'Rest Fundamentals');
+test("Go to Rest Fundamentals Page - Mobile", { tag: '@mobile' } , async ({ page }) => {
+  const restPage = new RestFundamentalsPage(page);
+  const mainPage = new MainPage(page);
+  await restPage.page.goto("/");
+  await mainPage.selectHamburgerIconMobile();
+  await restPage.openFromHome();
+  await restPage.expectHeading("Rest Fundamentals");
 });
 
-test('Go to Rest APi History', async ({ page }) => {
-    await page.goto('rest-api-history');
-    await restFundamentalsPage.assertHeader(page, 'REST API History');
+test("Go to REST API Fundamentals", async ({ page }) => {
+  const restPage = new RestFundamentalsPage(page);
+  await restPage.goto("rest-fundamentals");
+  await restPage.expectHeading("Rest Fundamentals");
 });
 
-test('Go to Send a GET request in Java', async ({ page }) => {
-    await page.goto('send-a-get-request-java');
-    await restFundamentalsPage.assertHeader(page, 'Send a GET request in Java');
+test("Go to REST API History", async ({ page }) => {
+  const restPage = new RestFundamentalsPage(page);
+  await restPage.goto("rest-api-history");
+  await restPage.expectHeading("REST API History");
 });
 
-test('Go to Send a POST request in Java', async ({ page }) => {
-    await page.goto('send-a-post-request-java');
-    await restFundamentalsPage.assertHeader(page, 'Send a POST request in Java');
+test("Go to Send a GET request in Java", async ({ page }) => {
+  const restPage = new RestFundamentalsPage(page);
+  await restPage.goto("send-a-get-request-java");
+  await restPage.expectHeading("Send a GET request in Java");
 });
 
-test('Go to Send a PUT request in Java', async ({ page }) => {
-    await page.goto('send-a-put-request-java');
-    await restFundamentalsPage.assertHeader(page, 'Send a PUT request in Java');
+test("Go to Send a POST request in Java", async ({ page }) => {
+  const restPage = new RestFundamentalsPage(page);
+  await restPage.goto("send-a-post-request-java");
+  await restPage.expectHeading("Send a POST request in Java");
 });
 
-test('Go to Send a PATCH request in Java', async ({ page }) => {
-    await page.goto('send-a-patch-request-java');
-    await restFundamentalsPage.assertHeader(page, 'Send a PATCH request in Java');
+test("Go to Send a PUT request in Java", async ({ page }) => {
+  const restPage = new RestFundamentalsPage(page);
+  await restPage.goto("send-a-put-request-java");
+  await restPage.expectHeading("Send a PUT request in Java");
 });
 
-test('Go to Send a DELETE request in Java', async ({ page }) => {
-    await page.goto('send-a-delete-request-java');
-    await restFundamentalsPage.assertHeader(page, 'SEND A DELETE REQUEST IN JAVA');
+test("Go to Send a PATCH request in Java", async ({ page }) => {
+  const restPage = new RestFundamentalsPage(page);
+  await restPage.goto("send-a-patch-request-java");
+  await restPage.expectHeading("Send a PATCH request in Java");
+});
+
+test("Go to Send a DELETE request in Java", async ({ page }) => {
+  const restPage = new RestFundamentalsPage(page);
+  await restPage.goto("send-a-delete-request-java");
+  await restPage.expectHeading("SEND A DELETE REQUEST IN JAVA");
 });

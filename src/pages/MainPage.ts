@@ -1,34 +1,44 @@
-import { expect, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 
-export async function assertPageTitle(page: Page) {
-    const pageTitle = page.getByRole('link', { 
-      name: 'RESTful API' 
-    })      
-    await expect(pageTitle).toBeVisible();
-}
+export class MainPage {
+  readonly page: Page;
+  readonly siteTitle: Locator;
+  readonly viewEndpointsButton: Locator;
+  readonly availableEndpointsHeading: Locator;
+  readonly publicButton: Locator;
+  readonly getAllObjectsEndpoint: Locator;
+  readonly hamburgeIconMobile: Locator;
 
-export async function assertEndPointsButton(page: Page) {
-    const viewEndpointsButton = page.getByRole('button', { 
-        name: 'View Endpoints' 
-    });
-        
-    await expect(viewEndpointsButton).toBeVisible();
-    await viewEndpointsButton.click();
-}
+  constructor(page: Page) {
+    this.page = page;
+    this.siteTitle = page.getByRole("link", { name: "RESTful API" });
+    this.viewEndpointsButton = page.getByRole("button", { name: "View Endpoints" });
+    this.availableEndpointsHeading = page.getByRole("heading", { name: "Available Endpoints" });
+    this.publicButton = page.locator('button[value="public"]');
+    this.getAllObjectsEndpoint = page.getByText("https://api.restful-api.dev/objects").first();
+    this.hamburgeIconMobile = page.locator('path[d*="M3"]');
+  }
 
-export async function assertEndPointsHeader(page: Page) {
-    const availableEndpointsHeader = page.getByRole('heading', { 
-        name: 'Available Endpoints' 
-    });
-    await expect(availableEndpointsHeader).toBeVisible();
-}
+  async goto() {
+    await this.page.goto("/");
+  }
 
-export async function clickPublicButton(page: Page) {
-    const publicButton = page.locator('button[value="public"]');
-    await publicButton.click();
-}
+  async expectLoaded() {
+    await expect(this.siteTitle).toBeVisible();
+  }
 
-export async function assertGetAllObjPublicApi(page: Page) {
-    const getObjectApiText = page.getByText('https://api.restful-api.dev/objects').first();
-    await expect(getObjectApiText).toBeVisible();
+  async openEndpoints() {
+    await this.viewEndpointsButton.click();
+    await expect(this.availableEndpointsHeading).toBeVisible();
+  }
+
+  async selectPublicEndpoints() {
+    await this.publicButton.click();
+    await expect(this.getAllObjectsEndpoint).toBeVisible();
+  }
+
+  async selectHamburgerIconMobile() {
+    await this.hamburgeIconMobile.click();
+    await expect(this.hamburgeIconMobile).toBeVisible();
+  }
 }

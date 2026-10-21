@@ -1,24 +1,21 @@
-import { test, expect } from "@playwright/test";
-import * as mainPage from "../../src/pages/MainPage";
+import { test } from "@playwright/test";
+import { MainPage } from "../../src/pages/MainPage";
 
-test('Go to Restful-api.dev site', async ({ page }) => {
-    await page.goto('');
-    await mainPage.assertPageTitle(page);
+test("Go to Restful-api.dev site", async ({ page }) => {
+  const mainPage = new MainPage(page);
+  await mainPage.goto();
+  await mainPage.expectLoaded();
 });
 
-test('Go to View Endpoints', async ({ page }) => {
-    await page.goto('');
-
-    //endpoint button
-    await mainPage.assertEndPointsButton(page);
-    await mainPage.assertEndPointsHeader(page);
+test("Go to View Endpoints", async ({ page }) => {
+  const mainPage = new MainPage(page);
+  await mainPage.goto();
+  await mainPage.openEndpoints();
 });
 
-test('Select Public Endpoints', async ({ page }) => {
-    await page.goto('');
-
-    //endpoint button
-    await mainPage.assertEndPointsButton(page);
-    await mainPage.clickPublicButton(page);
-    await mainPage.assertGetAllObjPublicApi(page);
+test("Select Public Endpoints", async ({ page }) => {
+  const mainPage = new MainPage(page);
+  await mainPage.goto();
+  await mainPage.openEndpoints();
+  await mainPage.selectPublicEndpoints();
 });
