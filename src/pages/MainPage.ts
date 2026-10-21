@@ -37,6 +37,7 @@ export class MainPage {
     await expect(this.getAllObjectsEndpoint).toBeVisible();
   }
 
+  //For mobile devices only
   async selectHamburgerIconMobile() {
     await this.hamburgeIconMobile.click();
     await expect(this.hamburgeIconMobile).toBeVisible();
