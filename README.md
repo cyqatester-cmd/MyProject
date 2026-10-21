@@ -1,4 +1,4 @@
-# Playwright Framework — GitHub Actions
+# Playwright Framework — GitHub Actions by cyqatester
 
 A web UI test automation framework built with **TypeScript, Playwright, Google Chrome, and the Page Object Model (POM)**. Supports desktop and mobile testing, integrated with GitHub Actions for continuous integration (CI).
 
